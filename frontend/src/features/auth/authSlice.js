@@ -5,7 +5,7 @@ import authService from './authService';
 const user = JSON.parse(localStorage.getItem('user'));
 
 const initialState = {
-  user: user && user || null,
+  user: user ? user : null,
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -28,6 +28,7 @@ export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
   try {
     return await authService.login(user);
   } catch (error) {
+    // eslint-disable-next-line
     const message = (error.response && error.response.data && error.response.data.message) 
       || error.message || error.toString();
     return thunkAPI.rejectWithValue(message);
