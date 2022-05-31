@@ -1,6 +1,6 @@
 {
   "name": "support-desk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Support Ticket App",
   "main": "server.js",
   "scripts": {
