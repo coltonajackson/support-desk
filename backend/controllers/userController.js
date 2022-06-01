@@ -13,12 +13,25 @@ const getUsers = asyncHandler(async (req, res) => {
   res.status(200).json(users);
 });
 
+// @desc Get current user
+// @route GET /api/users/me
+// @access Private
+const getMe = asyncHandler(async (req, res) => {
+  const user = {
+    id: req.user.id,
+    email: req.user.email,
+    name: req.user.name,
+    isStaff: req.user.isStaff,
+    isAdmin: req.user.isAdmin
+  }
+  res.status(200).json(user);
+});
+
 // @desc Get user
 // @route GET /api/users/:id
 // @access Private
 const getUser = asyncHandler(async (req, res) => {
   // Get user using the id in the JWT
-  console.log(req.user.id);
   const user = await User.findById(req.params.id);
   if (!user) {
     res.status(401);
@@ -140,7 +153,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 // @route POST /api/users/login
 // @access
 const loginUser = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, authLen } = req.body;
   const user = await User.findOne({ email });
   
   // Check user and password match
@@ -151,7 +164,7 @@ const loginUser = asyncHandler(async (req, res) => {
       email: user.email,
       isStaff: user.isStaff,
       isAdmin: user.isAdmin,
-      token: generateToken(user._id)
+      token: generateToken(user._id, authLen || null)
     });
   } else {
     res.status(401);
@@ -159,22 +172,10 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc Get current user
-// @route GET /api/users/me
-// @access Private
-const getMe = asyncHandler(async (req, res) => {
-  const user = {
-    id: req.user._id,
-    email: req.user.email,
-    name: req.user.name
-  }
-  res.status(200).json(user);
-});
-
 // Generate token
-const generateToken = (id) => {
+const generateToken = (id, authLen) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.NODE_ENV === 'development' ? '15m' : '12h'
+    expiresIn: process.env.NODE_ENV === 'development' ? (authLen || '15m') : '12h'
   });
 }
 

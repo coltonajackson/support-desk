@@ -30,6 +30,11 @@ function Header() {
               </li>
             )}
             <li>
+              <Link to='/me' className="btn btn-success">
+                <FaUser /> Me
+              </Link>
+            </li>
+            <li>
               <button className="btn" onClick={onLogout}>
                 <FaSignOutAlt /> Logout
               </button>

@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUsers, reset } from '../features/auth/authSlice';
+import { getUsers, reset } from '../features/users/userSlice';
 import Spinner from '../components/Spinner';
 import BackButton from '../components/BackButton';
 import UserItem from '../components/UserItem';
 
 function Users() {
-  const { users, isLoading } = useSelector((state) => state.auth);
+  const { users, isLoading } = useSelector((state) => state.users);
 
   const dispatch = useDispatch();
 

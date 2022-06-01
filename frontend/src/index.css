@@ -71,10 +71,6 @@ h3 {
   height: 40px;
 }
 
-.header ul li a:hover {
-  color: #777;
-}
-
 .header ul li a svg {
   margin-right: 5px;
 }
@@ -134,10 +130,22 @@ h3 {
   font-family: inherit;
 }
 
+.form-group textarea {
+  max-width: 100%;
+  resize: vertical;
+}
+
 .form-group label {
   text-align: left;
   display: block;
   margin: 0 0 5px 3px;
+}
+
+.footing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px auto 0;
 }
 
 .btn {
@@ -160,6 +168,11 @@ h3 {
   margin-right: 8px;
 }
 
+.btn-success {
+  background: rgb(22, 91, 59);
+  color: #fff;
+}
+
 .btn-reverse {
   background: #fff;
   color: #000;
@@ -180,13 +193,24 @@ h3 {
   border: none;
 }
 
-.btn-back {
+.btn.btn-back {
   width: 150px;
   margin-bottom: 20px;
 }
 
-.btn:hover {
+.btn:hover  {
   transform: scale(0.98);
+}
+
+.btn.register-link {
+  width: max-content;
+  padding: 10px 20px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: #000;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .ticket-created {

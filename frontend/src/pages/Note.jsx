@@ -3,13 +3,13 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { getNote } from '../features/notes/noteSlice';
-import { getUserByNote } from '../features/auth/authSlice';
+import { getUserByNote } from '../features/users/userSlice';
 
 function Note() {
   const [user, setUser] = useState(null);
   const { note, isLoading, isError, message } = useSelector((state) => state.notes);
   const { 
-    noteUser,
+    user: noteUser,
     isError: isNoteUserError,
     message: messageNoteUser
   } = useSelector((state) => state.auth);

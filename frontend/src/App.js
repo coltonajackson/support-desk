@@ -14,6 +14,7 @@ import Note from './pages/Note';
 import Missing from './pages/Missing';
 import Users from './pages/Users';
 import User from './pages/User';
+import Me from './pages/Me';
 
 function App() {
 
@@ -30,6 +31,9 @@ function App() {
             {/* Private Routes */}
             <Route element={<PersistLogin />}>
               {/* Customer Routes */}
+              <Route path='/me' element={<PrivateRoute />}>
+                <Route path='/me' element={<Me />} />
+              </Route>
               <Route path='/new-ticket' element={<PrivateRoute />}>
                 <Route path='/new-ticket' element={<NewTicket />} />
               </Route>

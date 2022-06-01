@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaSignInAlt } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
 import { login, reset } from '../features/auth/authSlice';
@@ -71,6 +71,9 @@ function Login() {
             </button>
           </div>
         </form>
+      </section>
+      <section className="footing">
+        <Link to='/register' className='btn register-link'>Register Instead?</Link>
       </section>
     </>
   )
