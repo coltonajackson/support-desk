@@ -14,6 +14,18 @@ const getNotes = async (ticketId, token) => {
   return response.data; 
 }
 
+// Get note
+const getNote = async (noteId, ticketId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+  
+  const response = await axios.get(`${API_URL}/${ticketId}/notes/${noteId}`, config);
+  return response.data; 
+}
+
 // Create ticket note
 const createNote = async (noteText, ticketId, token) => {
   const config = {
@@ -28,6 +40,7 @@ const createNote = async (noteText, ticketId, token) => {
 
 const noteService = {
   getNotes,
+  getNote,
   createNote
 }
 

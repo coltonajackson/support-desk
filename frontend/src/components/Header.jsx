@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa';
+import { FaSignInAlt, FaSignOutAlt, FaUser, FaUserFriends } from 'react-icons/fa';
 import { logout, reset } from '../features/auth/authSlice';
 
 function Header() {
@@ -21,11 +21,20 @@ function Header() {
       </div>
       <ul>
         {user ? (
-          <li>
-            <button className="btn" onClick={onLogout}>
-              <FaSignOutAlt /> Logout
-            </button>
-          </li>
+          <>
+            {(user.isStaff || user.isAdmin) && (
+              <li>
+                <Link to='/users' className="btn btn-reverse">
+                  <FaUserFriends /> Users
+                </Link>
+              </li>
+            )}
+            <li>
+              <button className="btn" onClick={onLogout}>
+                <FaSignOutAlt /> Logout
+              </button>
+            </li>
+          </>
         ) 
         : (
           <>

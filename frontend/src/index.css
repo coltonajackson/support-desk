@@ -67,6 +67,10 @@ h3 {
   align-items: center;
 }
 
+.header ul li a, .header ul li button {
+  height: 40px;
+}
+
 .header ul li a:hover {
   color: #777;
 }

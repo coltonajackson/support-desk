@@ -5,9 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node backend/server.js",
-    "server": "nodemon backend/server.js",
-    "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \" npm run client\"",
+    "server": "env-cmd -f .env nodemon backend/server.js",
+    "client": "env-cmd -f .env npm start --prefix frontend",
+    "dev": "env-cmd concurrently \"npm run server\" \" npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "author": "Colton Jackson",
@@ -17,12 +17,14 @@
     "colors": "^1.4.0",
     "concurrently": "^7.2.1",
     "dotenv": "^16.0.1",
+    "env-cmd": "^10.1.0",
     "express": "^4.18.1",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.4",
     "react-jwt": "^1.1.6",
-    "react-router": "^6.3.0"
+    "react-router": "^6.3.0",
+    "webpack": "^5.72.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"

@@ -12,8 +12,7 @@ const protect = asyncHandler(async (req, res, next) => {
       // Verify token
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       // Get user from token
-      req.user = await User.findById(decoded.id).select('-password');
-
+      req.user = await User.findById(decoded.id);
       next();
     } catch (error) {
       res.status(401);
@@ -27,4 +26,26 @@ const protect = asyncHandler(async (req, res, next) => {
   }
 });
 
-module.exports = { protect }
+const staff = asyncHandler(async (req, res, next) => {
+  if (req.user.isStaff || req.user.isAdmin) {
+    next();
+  } else {
+    res.status(401);
+    throw new Error('Not authorized');
+  }
+});
+
+const admin = asyncHandler(async (req, res, next) => {
+  if (req.user.isAdmin) {
+    next();
+  } else {
+    res.status(401);
+    throw new Error('Not authorized');
+  }
+});
+
+module.exports = { 
+  protect,
+  staff,
+  admin
+}

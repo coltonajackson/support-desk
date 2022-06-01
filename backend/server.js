@@ -8,11 +8,16 @@ const connectDB = require('./config/db');
 // Connect to database
 connectDB();
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.REACT_APP_BACKEND_PORT || 8000;
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', `http://localhost:${process.env.PORT}`);
+  next();
+});
 
 // Routes
 app.use('/api/users', require('./routes/userRoutes'));
