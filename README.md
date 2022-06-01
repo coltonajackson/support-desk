@@ -16,7 +16,8 @@ git clone https://github.com/coltonajackson/support-desk.git
 
 ```bash
 npm install
-cd frontend && npm install
+cd frontend
+npm install
 ```
 
 ### Run dev from root
@@ -26,4 +27,8 @@ cd ..
 npm run dev
 ```
 
-This will run JSON-server on port :5000 and React on port :3000
+This will run JSON-server on port :5000 and React on port :3000 (unless defined in .env)
+
+---
+
+View Live Demo on Heroku [here](http://caj-support-desk-01.herokuapp.com/)
