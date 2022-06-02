@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import userService from './userService';
 
 const initialState = {
-  user: null,
+  user: {},
   users: [],
   isError: false,
   isSuccess: false,
@@ -58,6 +58,7 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getUsers.pending, (state) => {
       state.isLoading = true;
+      state.user = {};
     }).addCase(getUsers.fulfilled, (state, action) => {
       state.isLoading = false;
       state.isSuccess = true;

@@ -12,12 +12,15 @@ function User() {
   const dispatch = useDispatch();
   const { userId } = useParams();
 
+  console.log(userId);
+
   useEffect(() => {
     if (isError) {
       toast.error(message);
     }
     dispatch(getUser(userId));
-  }, [isError, message, userId]);
+    // eslint-disable-next-line
+  }, [userId]);
 
   if (isLoading) {
     return <Spinner />
