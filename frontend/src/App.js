@@ -25,13 +25,13 @@ function App() {
           <Header />
           <Routes>
             {/* Public Routes */}
-            <Route exact path='/' element={<Home />} />
+            <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             {/* Private Routes */}
             <Route element={<PersistLogin />}>
               {/* Customer Routes */}
-              <Route exact path='/me' element={<PrivateRoute />}>
+              <Route path='/me' element={<PrivateRoute />}>
                 <Route path='/me' element={<Me />} />
               </Route>
               <Route path='/new-ticket' element={<PrivateRoute />}>
